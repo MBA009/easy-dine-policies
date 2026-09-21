@@ -536,3 +536,31 @@ footer {
     }
 
 }
+
+/* =========================================
+   Legal Warning
+   ========================================= */
+
+.legal-warning {
+    margin: 30px 0;
+
+    padding: 25px;
+
+    background: #f8f8f8;
+
+    border: 1px solid #dedede;
+
+    border-radius: 10px;
+}
+
+.legal-warning p {
+    margin-bottom: 18px;
+
+    color: #303030;
+
+    font-size: 0.92rem;
+}
+
+.legal-warning p:last-child {
+    margin-bottom: 0;
+}
