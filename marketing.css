@@ -1,0 +1,262 @@
+/* =========================================
+   Easy Dine — marketing page additions
+   Extends styles.css (same tokens/components);
+   nothing here overrides the privacy-policy
+   page's own rules.
+   ========================================= */
+
+/* ---- Hero extras ---- */
+
+.hero-inner {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+}
+
+.hero-copy {
+    flex: 1 1 480px;
+    min-width: 0;
+}
+
+.hero-mascot {
+    flex: 0 0 auto;
+
+    width: min(260px, 32vw);
+    height: auto;
+
+    display: block;
+}
+
+.hero-cta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 16px;
+
+    margin-top: 28px;
+}
+
+.store-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+
+    padding: 13px 22px;
+
+    background: var(--text);
+    color: white;
+
+    border-radius: 12px;
+
+    font-size: 0.95rem;
+    font-weight: 700;
+
+    line-height: 1.2;
+}
+
+.store-badge:hover {
+    background: #10161c;
+    text-decoration: none;
+}
+
+.store-badge svg {
+    flex: 0 0 auto;
+}
+
+.hero-note {
+    color: var(--muted);
+    font-size: 0.85rem;
+}
+
+/* ---- Section heading ---- */
+
+.section-heading {
+    text-align: center;
+
+    max-width: 640px;
+
+    margin: 0 auto 60px;
+}
+
+.section-heading .eyebrow {
+    display: block;
+}
+
+.section-heading h2 {
+    margin: 0 0 14px;
+
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+
+    letter-spacing: -0.03em;
+}
+
+.section-heading p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 1.05rem;
+}
+
+/* ---- Feature showcase (alternating rows) ---- */
+
+.features-section {
+    padding: 90px 0;
+}
+
+.features-section.alt {
+    background: var(--surface);
+
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+}
+
+.feature-row {
+    display: flex;
+    align-items: center;
+    gap: 70px;
+
+    padding: 55px 0;
+}
+
+.feature-row:not(:last-child) {
+    border-bottom: 1px solid var(--border);
+}
+
+.feature-row:nth-child(even) {
+    flex-direction: row-reverse;
+}
+
+.feature-shot {
+    flex: 0 0 auto;
+
+    width: min(280px, 42vw);
+
+    border-radius: 24px;
+    overflow: hidden;
+
+    box-shadow: 0 20px 45px rgba(31, 41, 51, 0.14);
+}
+
+.feature-shot img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.feature-copy {
+    flex: 1 1 320px;
+    min-width: 0;
+}
+
+.feature-copy h3 {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    margin: 0 0 12px;
+
+    font-size: 1.5rem;
+
+    letter-spacing: -0.02em;
+}
+
+.feature-copy p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 1.05rem;
+}
+
+.pro-badge {
+    display: inline-block;
+
+    padding: 3px 10px;
+
+    background: var(--highlight-bg);
+    color: var(--primary-dark);
+
+    border: 1px solid #f3ddd2;
+    border-radius: 999px;
+
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+/* ---- Bottom CTA ---- */
+
+.cta-section {
+    padding: 90px 0 100px;
+    text-align: center;
+}
+
+.cta-section h2 {
+    margin: 0 0 16px;
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    letter-spacing: -0.03em;
+}
+
+.cta-section p {
+    max-width: 520px;
+    margin: 0 auto 30px;
+    color: var(--muted);
+    font-size: 1.05rem;
+}
+
+.cta-section .hero-cta {
+    justify-content: center;
+}
+
+/* ---- Footer link row (marketing page uses a simpler footer than the policy page) ---- */
+
+.footer-links {
+    display: flex;
+    gap: 22px;
+    flex-wrap: wrap;
+}
+
+.footer-links a {
+    color: #cbd5e1;
+}
+
+.footer-links a:hover {
+    color: white;
+}
+
+/* ---- Mobile ---- */
+
+@media (max-width: 850px) {
+
+    .hero-inner {
+        flex-direction: column-reverse;
+        text-align: center;
+        gap: 30px;
+    }
+
+    .hero-mascot {
+        width: 180px;
+    }
+
+    .hero-cta {
+        justify-content: center;
+    }
+
+    .feature-row,
+    .feature-row:nth-child(even) {
+        flex-direction: column;
+        text-align: center;
+        gap: 30px;
+        padding: 40px 0;
+    }
+
+    .feature-copy h3 {
+        justify-content: center;
+    }
+
+    .feature-shot {
+        width: min(260px, 70vw);
+    }
+
+    .features-section {
+        padding: 60px 0;
+    }
+}
