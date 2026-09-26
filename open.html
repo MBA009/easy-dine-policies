@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Opening Easy Dine…</title>
+  <meta name="robots" content="noindex">
+  <style>
+    :root {
+      --cream: #FDF8F0;
+      --cream-dark: #F3ECE1;
+      --text: #2A2420;
+      --text-secondary: #8A8074;
+      --primary: #9A2409;
+    }
+    * { box-sizing: border-box; }
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(160deg, var(--cream), var(--cream-dark));
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      min-height: 100%;
+    }
+    .wrap {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 32px 24px;
+      text-align: center;
+      gap: 18px;
+    }
+    img.mascot {
+      width: 140px;
+      height: auto;
+    }
+    h1 {
+      font-size: 1.4rem;
+      margin: 0;
+    }
+    p.sub {
+      color: var(--text-secondary);
+      margin: 0;
+      max-width: 320px;
+    }
+    .open-btn {
+      display: inline-block;
+      margin-top: 8px;
+      padding: 14px 28px;
+      background: var(--primary);
+      color: white;
+      font-weight: 700;
+      text-decoration: none;
+      border-radius: 12px;
+      font-size: 1rem;
+    }
+    .stores {
+      margin-top: 28px;
+      padding-top: 24px;
+      border-top: 1px solid rgba(0,0,0,0.08);
+      width: 100%;
+      max-width: 340px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .stores p {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      margin: 0 0 4px;
+    }
+    .store-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 12px 20px;
+      background: var(--text);
+      color: white;
+      border-radius: 12px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <img class="mascot" src="assets/chef-headshot.png" alt="Easy Dine">
+    <h1>Opening Easy Dine…</h1>
+    <p class="sub" id="subtext">If nothing happens, tap below to open it in the app.</p>
+    <a class="open-btn" id="openBtn" href="#">Open in Easy Dine</a>
+
+    <div class="stores">
+      <p>Don't have the app yet?</p>
+      <!-- Play Store link is real and stable (keyed off the package name, not a
+           numeric id) even before this specific redirect ships to production users.
+           App Store link needs the real numeric app id from App Store Connect once
+           the app record exists there — same placeholder convention as about.html's
+           own store-badge links, filled in there once, not duplicated blind here. -->
+      <a class="store-badge" href="https://play.google.com/store/apps/details?id=com.bilalalikazmi.easydine">Get it on Google Play</a>
+      <a class="store-badge" href="#">Download on the App Store</a>
+    </div>
+  </div>
+
+  <script>
+    // `path` is the in-app route to deep-link into, e.g. "/recipe/<uuid>" or
+    // "/profile/<uuid>" — passed already-encoded by the app's own share hooks
+    // (useShareRecipe/useShareProfile, src/features/recipes/hooks.ts), decoded here
+    // rather than assumed safe: this value only ever gets used to build a URI (never
+    // written into the DOM as HTML), so there's no injection surface even though it's
+    // untrusted input from a shared link.
+    var params = new URLSearchParams(window.location.search);
+    var path = params.get('path') || '';
+    if (path && path.charAt(0) !== '/') path = '/' + path;
+    var deepLink = 'myapp://' + path.replace(/^\//, '');
+
+    document.getElementById('openBtn').setAttribute('href', deepLink);
+
+    // Attempt the deep link automatically. Mobile browsers generally allow a
+    // top-level navigation to a custom scheme triggered during initial page load
+    // (unlike e.g. popups) — if the app is installed, the OS intercepts this and
+    // the browser tab gets backgrounded/closed; if not installed, nothing visibly
+    // happens and the fallback UI already on screen (manual button + store badges)
+    // is what the person acts on next.
+    window.location.replace(deepLink);
+  </script>
+</body>
+</html>
